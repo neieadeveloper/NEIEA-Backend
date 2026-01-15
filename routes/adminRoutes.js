@@ -483,7 +483,7 @@ adminRoutes.post('/leadership/reorder', protect, reorderLeadership);
 adminRoutes.get('/leadership-page', protect, getLeadershipPageAdmin);
 adminRoutes.post('/leadership-page', protect, createLeadershipPage);
 adminRoutes.put('/leadership-page', protect, updateLeadershipPage);
-adminRoutes.post('/leadership-page/upload-hero-image', protect, uploadLeadershipImage, uploadLeadershipHeroImage);
+adminRoutes.post('/leadership-page/upload-hero-image', protect, uploadLeadershipImageMiddleware, uploadLeadershipHeroImage);
 
 // Gallery Routes -----------------------------------------------------
 adminRoutes.get('/gallery', protect, getAllGalleryItems);
@@ -796,7 +796,7 @@ adminRoutes.delete('/subscribe/bulk', protect, deleteMultipleSubscribes);
 // Volunteer Management Routes -----------------------------------------------------
 // Test route to verify routes are loaded
 adminRoutes.get('/volunteers/test', (req, res) => {
-    res.json({ success: true, message: 'Volunteer routes are working!' });
+  res.json({ success: true, message: 'Volunteer routes are working!' });
 });
 
 adminRoutes.get('/volunteers', protect, getAllVolunteersAdmin);
