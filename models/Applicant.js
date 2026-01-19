@@ -26,7 +26,7 @@ const applicantSchema = new mongoose.Schema({
     type: String,
     required: [true, "Phone number is required"],
     validate: {
-      validator: function(v) {
+      validator: function (v) {
         // Allows numbers with optional country code (e.g., +91, +1, etc.)
         return /^(\+\d{1,3}[- ]?)?\d{10}$/.test(v);
       },
@@ -35,7 +35,7 @@ const applicantSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: function() { return this.country !== "India"; }
+    required: function () { return this.country !== "India"; }
   },
   age: {
     type: Number,
@@ -60,7 +60,7 @@ const applicantSchema = new mongoose.Schema({
   },
   classStudying: {
     type: String,
-    required: function() { return this.isStudent === "Yes"; },
+    required: function () { return this.isStudent === "Yes"; },
   },
   motherTongue: {
     type: String,
@@ -68,17 +68,17 @@ const applicantSchema = new mongoose.Schema({
   },
   state: {
     type: String,
-    required: function() { return this.country === "India"; }
+    required: function () { return this.country === "India"; }
   },
   city: {
     type: String,
-    required: function() { return this.country === "India"; }
+    required: function () { return this.country === "India"; }
   },
   whatsappNumber: {
     type: String,
     required: [true, "WhatsApp number is required"],
     validate: {
-      validator: function(v) {
+      validator: function (v) {
         return /^(\+\d{1,3}[- ]?)?\d{10}$/.test(v);
       },
       message: props => `${props.value} is not a valid WhatsApp number!`
@@ -106,6 +106,6 @@ const applicantSchema = new mongoose.Schema({
 });
 
 // Create a compound index to prevent duplicate entries based on email and course
-applicantSchema.index({ email: 1, course: 1 }, { unique: true });
+applicantSchema.index({ email: 1, course: 1 });
 
 export default mongoose.model("Applicant", applicantSchema);
