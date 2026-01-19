@@ -296,24 +296,26 @@ export const verifyApplyCourseData = async (req, res) => {
 
     // Validate email format
     if (!validator.isEmail(email)) {
-      return res.status(400).json({ success:false,message: "Please provide a valid email." });
+      return res.status(400).json({ success: false, message: "Please provide a valid email." });
     }
 
     // Validate phone number format
     if (!validator.isMobilePhone(phone)) {
-      return res.status(400).json({ success:false,message: "Please provide a valid phone number." });
+      return res.status(400).json({ success: false, message: "Please provide a valid phone number." });
     }
 
     const course = await Course.findById(id);
     if (!course) {
-      return res.status(404).json({ success:false,message: "Course not found or inactive" });
+      return res.status(404).json({ success: false, message: "Course not found or inactive" });
     }
 
-    res.status(200).json({ success:true, message: "Your Application is ready to procced to payment now!" });
+
+
+    res.status(200).json({ success: true, message: "Your Application is ready to procced to payment now!" });
   } catch (error) {
     if (error.code === 11000) {
       // Handle duplicate key error
-      return res.status(400).json({ success:false,message: "You have already applied to this course." });
+      return res.status(400).json({ success: false, message: "You have already applied to this course." });
     }
     res.status(500).json({ message: error.message });
   }
